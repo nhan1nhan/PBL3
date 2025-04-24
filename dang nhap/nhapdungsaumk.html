@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quên mật khẩu</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('farm-blurred.jpg') no-repeat center center/cover;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #fff;
+        }
+        .forgot-container {
+            background: rgba(139, 69, 19, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+        .logo {
+            width: 80px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+        .forgot-container h2 {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffcc80;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ffb74d;
+        }
+        .back-to-login {
+            margin-top: 10px;
+            display: block;
+            color: #ffcc80;
+            text-decoration: none;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+        .success {
+            color: #4CAF50;
+        }
+        .error {
+            color: #FF5252;
+        }
+        .reset-password {
+            display: none;
+        }
+    </style>
+    <script>
+        function checkCCCD() {
+            let cccd = document.getElementById("cccd").value;
+            let message = document.getElementById("message");
+            let resetForm = document.getElementById("reset-password");
+            if (cccd === "1") { 
+                message.textContent = "Xác nhận thành công! Mời nhập mật khẩu mới.";
+                message.className = "message success";
+                resetForm.style.display = "block";
+            } else {
+                message.textContent = "Số CCCD không hợp lệ. Vui lòng thử lại.";
+                message.className = "message error";
+                resetForm.style.display = "none";
+            }
+            message.style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <div class="forgot-container">
+        <img src="logo.png" alt="Logo Trang trại" class="logo">
+        <h2>Quên mật khẩu</h2>
+        <p>Nhập số CCCD để đặt lại mật khẩu:</p>
+        <input type="text" id="cccd" placeholder="Nhập số CCCD">
+        <button onclick="checkCCCD()">Xác nhận</button>
+        <p id="message" class="message"></p>
+        
+        <div id="reset-password" class="reset-password">
+            <p>Nhập mật khẩu mới:</p>
+            <input type="password" id="new-password" placeholder="Nhập mật khẩu mới">
+            <input type="password" id="confirm-password" placeholder="Xác nhận mật khẩu mới">
+            <button>Đặt lại mật khẩu</button>
+        </div>
+        
+        <a href="login.html" class="back-to-login">Quay lại đăng nhập</a>
+    </div>
+</body>
+</html>

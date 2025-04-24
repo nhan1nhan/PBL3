@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Nhân Viên</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 250px;
+            background: #8B4513;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar img {
+            width: 100px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background: white;
+            padding: 5px;
+        }
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+ 	.sidebar a.logout {
+            background: red;
+            margin-top: 10px;
+            border-radius: 5px;
+         }
+        .content {
+            flex: 1;
+            background: #D2B48C;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        .section {
+            width: 90%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        select, textarea, button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(id).classList.remove('hidden');
+}
+
+    function logout() {
+        localStorage.removeItem("loggedIn");
+        localStorage.removeItem("role");
+        window.location.href = "login.html"; 
+    }
+</script>
+
+    </script>
+	
+</head>
+<body>
+    <div class="sidebar">
+        <img src="logo.png" alt="Logo">
+        <h2>Chức năng</h2>
+        <a href="#" onclick="showSection('baocaochung')">Báo cáo chung</a>
+        <a href="#" onclick="showSection('calamviec')">Kiểm tra ca làm</a>
+        <a href="#" onclick="showSection('baocaotinhtrang')">Báo cáo tình trạng chuồng</a>
+        <a href="#" onclick="showSection('kiemtrasuckhoe')">Kiểm tra sức khỏe heo</a>
+        <a href="#">Cài đặt</a>
+         <a href="#" class="logout" onclick="logout()">Đăng xuất</a>
+
+    </div>
+    <div class="content">
+        <div id="baocaochung" class="section">
+            <h2>Báo cáo chung</h2>
+            <p>- Ca làm việc hôm nay: Ca sáng</p>
+            <p>- Trạng thái chuồng: Khu A - Chuồng 3 cần vệ sinh</p>
+            <p>- Sức khỏe heo: 2 con ở chuồng B-2-45 cần kiểm tra</p>
+        </div>
+        <div id="calamviec" class="section hidden">
+            <h2>Kiểm tra ca làm</h2>
+            <select>
+                <option>Tuần này</option>
+                <option>Tuần sau</option>
+            </select>
+            <p>Thứ 2 - Ca sáng</p>
+            <p>Thứ 3 - Ca tối</p>
+            <p>Thứ 4 - Ca chiều</p>
+            <p>Thứ 5 - Ca sáng</p>
+            <p>Thứ 6 - Ca tối</p>
+            <p>Thứ 7 - Ca chiều</p>
+            <p>Chủ nhật - Nghỉ</p>
+        </div>
+        <div id="baocaotinhtrang" class="section hidden">
+            <h2>Báo cáo tình trạng chuồng</h2>
+            <select onchange="showChuong()">
+                <option>Chọn khu</option>
+                <option>Khu A</option>
+                <option>Khu B</option>
+                <option>Khu C</option>
+            </select>
+            <select>
+                <option>Chọn chuồng</option>
+                <option>Chuồng 1</option>
+                <option>Chuồng 2</option>
+                <option>Chuồng 3</option>
+                <option>Chuồng 4</option>
+                <option>Chuồng 5</option>
+                <option>Chuồng 6</option>
+            </select>
+            <textarea placeholder="Nhập tình trạng chuồng"></textarea>
+            <button>Báo cáo</button>
+        </div>
+        <div id="kiemtrasuckhoe" class="section hidden">
+            <h2>Kiểm tra sức khỏe heo</h2>
+            <select>
+                <option>Chọn khu</option>
+                <option>Khu A</option>
+                <option>Khu B</option>
+                <option>Khu C</option>
+            </select>
+            <select>
+                <option>Chọn chuồng</option>
+                <option>Chuồng 1</option>
+                <option>Chuồng 2</option>
+                <option>Chuồng 3</option>
+                <option>Chuồng 4</option>
+                <option>Chuồng 5</option>
+                <option>Chuồng 6</option>
+            </select>
+            <select>
+                <option>Chọn heo</option>
+                <option>A-1-01</option>
+                <option>A-1-02</option>
+                <option>A-1-03</option>
+                <option>A-1-04</option>
+            </select>
+            <textarea placeholder="Nhập tình trạng sức khỏe heo"></textarea>
+            <button>Báo cáo</button>
+        </div>
+    </div>
+</body>
+</html>
