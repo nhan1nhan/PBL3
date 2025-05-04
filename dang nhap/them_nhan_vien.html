@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thêm nhân viên</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      background: #f0f0f0;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #8B4513;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    .sidebar img {
+      width: 100px;
+      background: white;
+      border-radius: 10px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      width: 80%;
+      margin: 6px 0;
+      padding: 10px;
+      text-align: center;
+      background: none;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      cursor: pointer;
+    }
+
+    .sidebar .logout {
+      background: red;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .content {
+      flex: 1;
+      background: #f5deb3;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #8B4513;
+      margin-bottom: 30px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #aaa;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #deb887;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #cfa973;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="pictures/logo.png" alt="Logo" />
+    <h2>Quản lý</h2>
+    <a href="boss.html">Trang chính</a>
+    <a class="logout" href="login.html">Đăng xuất</a>
+  </div>
+
+  <div class="content">
+    <h1>THÊM NHÂN VIÊN</h1>
+    <form>
+      <label>Họ và tên</label>
+      <input type="text" placeholder="Nhập họ tên">
+
+      <label>Ngày sinh</label>
+      <input type="date">
+
+      <label>Giới tính</label>
+      <select>
+        <option>Nam</option>
+        <option>Nữ</option>
+        <option>Khác</option>
+      </select>
+
+      <label>Số điện thoại</label>
+      <input type="text" placeholder="Nhập số điện thoại">
+
+      <label>Email</label>
+      <input type="email" placeholder="Nhập email">
+
+      <label>Địa chỉ</label>
+      <input type="text" placeholder="Nhập địa chỉ">
+
+      <button type="submit" class="submit-btn">Thêm nhân viên</button>
+    </form>
+  </div>
+</body>
+</html>

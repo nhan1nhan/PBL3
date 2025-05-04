@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nhập Heo</title>
+  <style>
+    body {
+      display: flex;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #8B4513;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar img {
+      width: 100px;
+      margin-bottom: 20px;
+      background: white;
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .sidebar a.logout {
+      background: red;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+
+    .content {
+      flex: 1;
+      background: #F5DEB3;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .page-header {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #8B4513;
+      font-weight: bold;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      background: #DEB887;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #cda772;
+    }
+
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      z-index: 10;
+      width: 300px;
+    }
+
+    .form-popup h3 {
+      margin-top: 0;
+    }
+
+    .form-popup input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .form-popup button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-popup .exit {
+      background: red;
+      color: white;
+      float: right;
+    }
+
+    .form-popup .confirm {
+      background: #8B4513;
+      color: white;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .table th, .table td {
+      border: 1px solid #999;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .message {
+      color: green;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+  <script>
+    function logout() {
+      window.location.href = "login.html";
+    }
+
+    function openForm(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+    function closeForm(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    function taoPhieu() {
+      alert("Tạo thành công!");
+      closeForm("form-tao");
+    }
+
+    function suaPhieu() {
+      alert("Sửa thành công!");
+      closeForm("form-sua");
+    }
+
+    function xoaPhieu() {
+      alert("Đã xoá phiếu!");
+      closeForm("form-xoa");
+    }
+  </script>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="pictures/logo.png" alt="Logo" />
+    <h2>Nhân viên</h2>
+    <a href="nhanvien.html">Trang chính</a>
+    <a href="#" class="logout" onclick="logout()">Đăng xuất</a>
+  </div>
+
+  <div class="content">
+    <div class="page-header">PHIẾU NHẬP HEO</div>
+
+    <div class="button-group">
+      <button class="btn" onclick="openForm('form-tao')">Tạo phiếu nhập</button>
+      <button class="btn" onclick="openForm('form-sua')">Sửa phiếu nhập</button>
+      <button class="btn" onclick="openForm('form-xoa')">Xoá phiếu nhập</button>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ngày</th>
+          <th>Tên chuồng</th>
+          <th>Số lượng</th>
+          <th>Nhân viên</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01/05/2025</td>
+          <td>Chuồng A</td>
+          <td>200</td>
+          <td>Nguyễn Văn A</td>
+        </tr>
+        <tr>
+          <td>02/05/2025</td>
+          <td>Chuồng B</td>
+          <td>150</td>
+          <td>Trần Thị B</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Form tạo -->
+  <div class="form-popup" id="form-tao">
+    <button class="exit" onclick="closeForm('form-tao')">Thoát</button>
+    <h3>Tạo phiếu nhập</h3>
+    <input type="text" placeholder="Chọn ID chuồng">
+    <input type="date" placeholder="Ngày tạo">
+    <input type="number" placeholder="Số lượng">
+    <input type="text" placeholder="Người duyệt (tự động)">
+    <button class="confirm" onclick="taoPhieu()">Tạo</button>
+  </div>
+
+  <!-- Form sửa -->
+  <div class="form-popup" id="form-sua">
+    <button class="exit" onclick="closeForm('form-sua')">Thoát</button>
+    <h3>Sửa phiếu nhập</h3>
+    <input type="text" placeholder="Chọn ID phiếu">
+    <input type="date" placeholder="Ngày mới">
+    <input type="number" placeholder="Số lượng mới">
+    <input type="text" placeholder="Người duyệt">
+    <button class="confirm" onclick="suaPhieu()">Sửa</button>
+  </div>
+
+  <!-- Form xoá -->
+  <div class="form-popup" id="form-xoa">
+    <button class="exit" onclick="closeForm('form-xoa')">Thoát</button>
+    <h3>Xoá phiếu nhập</h3>
+    <input type="text" placeholder="Chọn ID phiếu">
+    <button class="confirm" onclick="xoaPhieu()">Xoá</button>
+  </div>
+</body>
+</html>

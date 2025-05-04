@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thống kê chi phí thức ăn</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      display: flex;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      background: #f0f0f0;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #8B4513;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    .sidebar img {
+      width: 100px;
+      background: white;
+      border-radius: 10px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      width: 80%;
+      margin: 6px 0;
+      padding: 10px;
+      text-align: center;
+      background: none;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      cursor: pointer;
+    }
+
+    .sidebar .logout {
+      background: red;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .content {
+      flex: 1;
+      background: #f5deb3;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #8B4513;
+      margin-bottom: 25px;
+    }
+
+    .filter-box {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="date"] {
+      padding: 8px 12px;
+      margin: 0 10px;
+      border-radius: 6px;
+      border: 1px solid #aaa;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      background: #deb887;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #cfa973;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background: #deb887;
+      color: #4b2e0f;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="pictures/logo.png" alt="Logo" />
+    <h2>Quản lý</h2>
+    <a href="boss.html">Trang chính</a>
+    <a class="logout" href="login.html">Đăng xuất</a>
+  </div>
+
+  <div class="content">
+    <h1>Thống kê chi phí thức ăn</h1>
+
+    <div class="filter-box">
+      <label for="from">Từ ngày:</label>
+      <input type="date" id="from">
+      <label for="to">Đến ngày:</label>
+      <input type="date" id="to">
+      <button class="btn">Xem thống kê</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Ngày</th>
+          <th>Tên thức ăn</th>
+          <th>Số lượng</th>
+          <th>Đơn giá</th>
+          <th>Thành tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01/05/2025</td>
+          <td>Cám viên</td>
+          <td>50kg</td>
+          <td>12,000đ</td>
+          <td>600,000đ</td>
+        </tr>
+        <tr>
+          <td>02/05/2025</td>
+          <td>Bắp nghiền</td>
+          <td>40kg</td>
+          <td>10,000đ</td>
+          <td>400,000đ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

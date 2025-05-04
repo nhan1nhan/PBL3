@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phiếu Hao Hụt</title>
+  <style>
+    body { display: flex; height: 100vh; margin: 0; font-family: Arial, sans-serif; }
+    .sidebar {
+      width: 250px; background: #8B4513; color: white; padding: 20px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .sidebar img {
+      width: 100px; margin-bottom: 20px; background: white; border-radius: 10px; padding: 5px;
+    }
+    .sidebar h2 { margin-bottom: 20px; }
+    .sidebar a {
+      color: white; text-decoration: none; padding: 10px; display: block; width: 100%;
+      text-align: center; border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .sidebar a.logout { background: red; margin-top: 20px; border-radius: 5px; }
+
+    .content {
+      flex: 1; background: #F5DEB3; padding: 20px; overflow-y: auto;
+    }
+    .page-header {
+      font-size: 28px; text-align: center; margin-bottom: 20px;
+      color: #8B4513; font-weight: bold;
+    }
+    .button-group {
+      display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;
+    }
+    .btn {
+      padding: 10px 20px; font-weight: bold; border: none; border-radius: 8px;
+      background: #DEB887; color: black; cursor: pointer; transition: 0.3s;
+    }
+    .btn:hover { background: #cda772; }
+
+    .form-popup {
+      display: none; position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      background: white; padding: 25px; border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 10; width: 340px;
+    }
+    .form-popup input, .form-popup select {
+      width: 100%; padding: 8px; margin: 10px 0;
+      border-radius: 5px; border: 1px solid #ccc;
+    }
+    .form-popup button {
+      margin-top: 10px; padding: 8px 15px; border: none;
+      font-weight: bold; border-radius: 5px; cursor: pointer;
+    }
+    .form-popup .exit { background: red; color: white; float: right; }
+    .form-popup .confirm { background: #8B4513; color: white; }
+
+    .table {
+      width: 100%; border-collapse: collapse; background: white;
+      border-radius: 10px; overflow: hidden;
+    }
+    .table th, .table td {
+      border: 1px solid #999; padding: 10px; text-align: center;
+    }
+  </style>
+  <script>
+    function logout() { window.location.href = "login.html"; }
+
+    function openForm(id) { document.getElementById(id).style.display = "block"; }
+    function closeForm(id) { document.getElementById(id).style.display = "none"; }
+
+    function showCreateForm() {
+      var chuong = document.getElementById("chon-chuong").value;
+      if (chuong) {
+        document.getElementById("form-tao").style.display = "block";
+        document.getElementById("chuong-name").value = chuong;
+        document.getElementById("chon-chuong-form").style.display = "none";
+      } else {
+        alert("Vui lòng chọn chuồng có heo.");
+      }
+    }
+
+    function showEditForm() {
+      var id = document.getElementById("chon-id").value;
+      if (id) {
+        document.getElementById("form-sua").style.display = "block";
+        document.getElementById("id-sua").value = id;
+        document.getElementById("chon-id-form").style.display = "none";
+      } else {
+        alert("Vui lòng chọn ID phiếu cần sửa.");
+      }
+    }
+
+    function taoPhieu() {
+      alert("Tạo phiếu hao hụt thành công!");
+      closeForm("form-tao");
+    }
+
+    function suaPhieu() {
+      alert("Sửa phiếu thành công!");
+      closeForm("form-sua");
+    }
+
+    function xoaPhieu() {
+      alert("Đã xoá phiếu hao hụt!");
+      closeForm("form-xoa");
+    }
+  </script>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="pictures/logo.png" alt="Logo" />
+    <h2>Nhân viên</h2>
+    <a href="nhanvien.html">Trang chính</a>
+    <a href="#" class="logout" onclick="logout()">Đăng xuất</a>
+  </div>
+
+  <div class="content">
+    <div class="page-header">PHIẾU HAO HỤT</div>
+    <div class="button-group">
+      <button class="btn" onclick="openForm('chon-chuong-form')">Tạo phiếu hao hụt</button>
+      <button class="btn" onclick="openForm('chon-id-form')">Sửa phiếu hao hụt</button>
+      <button class="btn" onclick="openForm('form-xoa')">Xoá phiếu hao hụt</button>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th><th>Ngày</th><th>Số lượng</th><th>Lý do</th><th>Chuồng</th><th>Người làm đơn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>HH01</td><td>04/05/2025</td><td>10</td><td>Chết do bệnh</td><td>Chuồng A</td><td>Trần Văn B</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Chọn chuồng -->
+  <div class="form-popup" id="chon-chuong-form">
+    <button class="exit" onclick="closeForm('chon-chuong-form')">Thoát</button>
+    <h3>Chọn chuồng</h3>
+    <select id="chon-chuong">
+      <option value="">-- Chọn chuồng --</option>
+      <option value="Chuồng A">Chuồng A (500 con)</option>
+      <option value="Chuồng B">Chuồng B (300 con)</option>
+    </select>
+    <button class="confirm" onclick="showCreateForm()">Tiếp tục</button>
+  </div>
+
+  <!-- Tạo phiếu -->
+  <div class="form-popup" id="form-tao">
+    <button class="exit" onclick="closeForm('form-tao')">Thoát</button>
+    <h3>Tạo phiếu hao hụt</h3>
+    <input type="text" id="chuong-name" readonly>
+    <input type="date" placeholder="Ngày tạo">
+    <input type="number" placeholder="Số lượng">
+    <input type="text" placeholder="Nguyên nhân">
+    <input type="text" placeholder="Người tạo">
+    <button class="confirm" onclick="taoPhieu()">Thêm</button>
+  </div>
+
+  <!-- Chọn ID sửa -->
+  <div class="form-popup" id="chon-id-form">
+    <button class="exit" onclick="closeForm('chon-id-form')">Thoát</button>
+    <h3>Chọn ID phiếu cần sửa</h3>
+    <select id="chon-id">
+      <option value="">-- Chọn phiếu --</option>
+      <option value="HH01">HH01</option>
+      <option value="HH02">HH02</option>
+    </select>
+    <button class="confirm" onclick="showEditForm()">Tiếp tục</button>
+  </div>
+
+  <!-- Sửa phiếu -->
+  <div class="form-popup" id="form-sua">
+    <button class="exit" onclick="closeForm('form-sua')">Thoát</button>
+    <h3>Sửa phiếu hao hụt</h3>
+    <input type="text" id="id-sua" readonly>
+    <input type="date" placeholder="Ngày sửa">
+    <input type="number" placeholder="Số lượng mới">
+    <input type="text" placeholder="Lý do mới">
+    <input type="text" placeholder="Người sửa">
+    <button class="confirm" onclick="suaPhieu()">Sửa</button>
+  </div>
+
+  <!-- Xoá -->
+  <div class="form-popup" id="form-xoa">
+    <button class="exit" onclick="closeForm('form-xoa')">Thoát</button>
+    <h3>Xoá phiếu hao hụt</h3>
+    <input type="text" placeholder="Nhập ID phiếu hao hụt">
+    <button class="confirm" onclick="xoaPhieu()">Xoá</button>
+  </div>
+</body>
+</html>

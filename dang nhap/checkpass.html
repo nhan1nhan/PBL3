@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quên mật khẩu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('pictures/farm-blurred.jpg') no-repeat center center/cover;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .forgot-container {
+            background: rgba(139, 69, 19, 0.92);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+            max-width: 420px;
+            width: 90%;
+            color: #fff;
+            animation: fadeIn 0.8s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .logo {
+            width: 80px;
+            display: block;
+            margin: 0 auto 20px;
+        }
+        h2 {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ffcc80;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ffb74d;
+        }
+        .back-to-login {
+            margin-top: 12px;
+            display: block;
+            color: #ffcc80;
+            text-align: center;
+            text-decoration: none;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+            text-align: center;
+        }
+        .success {
+            color: #4CAF50;
+        }
+        .error {
+            color: #FF5252;
+        }
+        .reset-password {
+            display: none;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="forgot-container">
+    <img src="pictures/logo.png" alt="Logo Trang trại" class="logo">
+    <h2><i class="fas fa-key"></i> Quên mật khẩu</h2>
+    <form onsubmit="return checkCCCD()">
+        <p>Nhập số CCCD để đặt lại mật khẩu:</p>
+        <input type="text" id="cccd" placeholder="Nhập số CCCD" required>
+        <button type="submit">Xác nhận</button>
+        <p id="message" class="message"></p>
+
+        <div id="reset-password" class="reset-password">
+            <p>Nhập mật khẩu mới:</p>
+            <input type="password" id="new-password" placeholder="Nhập mật khẩu mới" required>
+            <input type="password" id="confirm-password" placeholder="Xác nhận mật khẩu mới" required>
+            <button type="button" onclick="resetPassword()">Đặt lại mật khẩu</button>
+        </div>
+    </form>
+    <a href="login.html" class="back-to-login">Quay lại đăng nhập</a>
+</div>
+
+<script>
+    function checkCCCD() {
+        const cccd = document.getElementById("cccd").value.trim();
+        const message = document.getElementById("message");
+        const resetForm = document.getElementById("reset-password");
+
+        if (cccd === "1") {
+            message.textContent = "Xác nhận thành công! Mời nhập mật khẩu mới.";
+            message.className = "message success";
+            resetForm.style.display = "block";
+        } else {
+            message.textContent = "Số CCCD không hợp lệ. Vui lòng thử lại.";
+            message.className = "message error";
+            resetForm.style.display = "none";
+        }
+        message.style.display = "block";
+        return false; 
+    }
+
+    function resetPassword() {
+        const newPwd = document.getElementById("new-password").value.trim();
+        const confirmPwd = document.getElementById("confirm-password").value.trim();
+        const message = document.getElementById("message");
+
+        if (newPwd === "" || confirmPwd === "") {
+            message.textContent = "Vui lòng nhập đầy đủ thông tin.";
+            message.className = "message error";
+        } else if (newPwd !== confirmPwd) {
+            message.textContent = "Mật khẩu xác nhận không khớp.";
+            message.className = "message error";
+        } else {
+            message.textContent = "Đặt lại mật khẩu thành công!";
+            message.className = "message success";
+        }
+        message.style.display = "block";
+    }
+</script>
+</body>
+</html>
