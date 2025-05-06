@@ -1,0 +1,231 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý chuồng trại</title>
+  <style>
+    body {
+      display: flex;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #8B4513;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar img {
+      width: 100px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      background: white;
+      padding: 5px;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .sidebar a.logout {
+      background: red;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+
+    .content {
+      flex: 1;
+      background: #F5DEB3;
+      padding: 20px;
+    }
+
+    .page-header {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #8B4513;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #DEB887;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #cda772;
+    }
+
+    .chuong-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .chuong-box {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      width: 250px;
+      text-align: center;
+    }
+
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+      z-index: 10;
+    }
+
+    .form-popup input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .form-popup button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-popup .exit {
+      background: red;
+      color: white;
+      float: right;
+    }
+
+    .form-popup .confirm {
+      background: #8B4513;
+      color: white;
+    }
+
+    .message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+  <script>
+    function logout() {
+      window.location.href = "login.jsp";
+    }
+
+    function openForm(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closeForm(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function themChuong() {
+      // Đây là chỗ để xử lý thêm chuồng bằng JS/backend
+      alert("Thêm thành công!");
+      closeForm('form-them');
+    }
+  </script>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="pictures/logo.png" alt="Logo">
+    <h2>Admin</h2>
+    <a href="nhanvien.jsp">Trang chính</a>
+    <a href="#" class="logout" onclick="logout()">Đăng xuất</a>
+  </div>
+
+  <div class="content">
+    <div class="page-header">QUẢN LÝ CHUỒNG TRẠI</div>
+
+    <div class="btn-group">
+      <button class="btn" onclick="openForm('form-them')">Thêm chuồng</button>
+      <button class="btn" onclick="openForm('form-sua')">Sửa chuồng</button>
+      <button class="btn" onclick="openForm('form-xoa')">Xoá chuồng</button>
+    </div>
+
+    <div class="chuong-list">
+      <div class="chuong-box">
+        <h3>ID1: Chuồng A</h3>
+        <p>Hiện tại: 500 con</p>
+      </div>
+      <div class="chuong-box">
+        <h3>ID2: Chuồng B</h3>
+        <p>Hiện tại: 600 con</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form thêm -->
+  <div class="form-popup" id="form-them">
+    <button class="exit" onclick="closeForm('form-them')">Thoát</button>
+    <h3>Thêm chuồng</h3>
+    <input type="text" placeholder="ID chuồng">
+    <input type="text" placeholder="Tên chuồng">
+    <input type="number" placeholder="Sức chứa">
+    <button class="confirm" onclick="themChuong()">Thêm</button>
+  </div>
+
+  <!-- Form sửa -->
+  <div class="form-popup" id="form-sua">
+    <button class="exit" onclick="closeForm('form-sua')">Thoát</button>
+    <h3>Sửa chuồng</h3>
+    <input type="text" placeholder="ID chuồng cần sửa">
+    <input type="text" placeholder="Tên mới">
+    <input type="number" placeholder="Sức chứa mới">
+    <button class="confirm">Sửa</button>
+  </div>
+
+  <!-- Form xoá -->
+  <div class="form-popup" id="form-xoa">
+    <button class="exit" onclick="closeForm('form-xoa')">Thoát</button>
+    <h3>Xoá chuồng</h3>
+    <input type="text" placeholder="Nhập ID chuồng">
+    <button class="confirm">Xoá</button>
+  </div>
+</body>
+</html>
